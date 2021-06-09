@@ -17,24 +17,24 @@ class UserViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
     """
-    queryset = User.objects.all().order_by('-date_joined')
-    serializer_class = UserSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    queryset            = User.objects.all().order_by('-date_joined')
+    serializer_class    = UserSerializer
+    permission_classes  = [permissions.IsAuthenticated]
 
 
 class GroupViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows groups to be viewed or edited.
     """
-    queryset = Group.objects.all()
-    serializer_class = GroupSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    queryset            = Group.objects.all()
+    serializer_class    = GroupSerializer
+    permission_classes  = [permissions.IsAuthenticated]
 
 
 class EmployeeList(APIView):
     def get(self, request, format = None):
-        employees = Employee.objects.all()
-        serializer = EmployeeSerializer(employees, many = True)
+        employees       = Employee.objects.all()
+        serializer      = EmployeeSerializer(employees, many = True)
         return Response(serializer.data)
 
 class EmployeeDetails(APIView):
@@ -45,14 +45,14 @@ class EmployeeDetails(APIView):
             raise Http404
 
     def get(self, request, pk, format = None):
-        employee = self.get_employee(pk)
-        serializer = EmployeeSerializer(employee)
+        employee        = self.get_employee(pk)
+        serializer      = EmployeeSerializer(employee)
         return Response(serializer.data)
 
 class SectorList(APIView):
     def get(self, request, format = None):
-        sectors = Sector.objects.all()
-        serializer = SectorSerializer(sectors, many = True)
+        sectors         = Sector.objects.all()
+        serializer      = SectorSerializer(sectors, many = True)
         return Response(serializer.data)
 
 class SectorDetails(APIView):
@@ -63,14 +63,14 @@ class SectorDetails(APIView):
             raise Http404
 
     def get(self, request, pk, format = None):
-        sector = self.get_employee(pk)
-        serializer = SectorSerializer(sector)
+        sector          = self.get_employee(pk)
+        serializer      = SectorSerializer(sector)
         return Response(serializer.data)
 
 class ProjectList(APIView):
     def get(self, request, format = None):
-        projects = Project.objects.all()
-        serializer = ProjectSerializer(projects, many = True)
+        projects        = Project.objects.all()
+        serializer      = ProjectSerializer(projects, many = True)
         return Response(serializer.data)
 
 class ProjectDetails(APIView):
@@ -81,6 +81,6 @@ class ProjectDetails(APIView):
             raise Http404
 
     def get(self, request, pk, format = None):
-        project = self.get_project(pk)
-        serializer = EmployeeSerializer(project)
+        project         = self.get_project(pk)
+        serializer      = EmployeeSerializer(project)
         return Response(serializer.data)
